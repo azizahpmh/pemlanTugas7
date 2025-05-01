@@ -1,0 +1,68 @@
+package Tugas7Pratikum;
+
+public class Main {
+    public static void main(String[] args) {
+        Kue[] daftarKue = new Kue[20];
+
+        daftarKue[0] = new KuePesanan("Kue Lapis", 5000, 2);
+        daftarKue[1] = new KueJadi("Brownies", 12000, 3);
+        daftarKue[2] = new KuePesanan("Kue Tart", 15000, 1.5);
+        daftarKue[3] = new KueJadi("Donat", 3000, 10);
+        daftarKue[4] = new KuePesanan("Kue Lumpur", 4000, 2.2);
+        daftarKue[5] = new KueJadi("Kue Cubit", 2000, 5);
+        daftarKue[6] = new KuePesanan("Kue Apem", 3500, 1.8);
+        daftarKue[7] = new KueJadi("Kue Sus", 2500, 6);
+        daftarKue[8] = new KuePesanan("Kue Bika", 10000, 2.5);
+        daftarKue[9] = new KueJadi("Kue Soes", 2800, 4);
+        daftarKue[10] = new KuePesanan("Kue Pisang", 4500, 2);
+        daftarKue[11] = new KueJadi("Kue Serabi", 2700, 8);
+        daftarKue[12] = new KuePesanan("Kue Nagasari", 3000, 1.3);
+        daftarKue[13] = new KueJadi("Kue Klepon", 2200, 9);
+        daftarKue[14] = new KuePesanan("Kue Putu", 3200, 2.4);
+        daftarKue[15] = new KueJadi("Kue Kering", 5000, 2);
+        daftarKue[16] = new KuePesanan("Kue Lemper", 3600, 1.7);
+        daftarKue[17] = new KueJadi("Kue Ubi", 2400, 7);
+        daftarKue[18] = new KuePesanan("Kue Bolu", 4200, 2.1);
+        daftarKue[19] = new KueJadi("Kue Donat Mini", 2100, 6);
+
+        double totalSemuaHarga = 0;
+        double totalHargaPesanan = 0, totalBeratPesanan = 0;
+        double totalHargaJadi = 0, totalJumlahJadi = 0;
+        Kue kueTermahal = daftarKue[0];
+
+        System.out.println("DAFTAR SEMUA KUE: ");
+        for (Kue kue : daftarKue) {
+            String jenis = (kue instanceof KuePesanan) ? "[Kue Pesanan]" : "[Kue Jadi]";
+            System.out.println(jenis + " ~ " + kue.toString());
+
+            double hargaAkhir = kue.hitungHarga();
+            totalSemuaHarga += hargaAkhir;
+
+            if (kue instanceof KuePesanan) {
+                totalHargaPesanan += hargaAkhir;
+                totalBeratPesanan += ((KuePesanan) kue).getBerat();
+            }
+
+            if (kue instanceof KueJadi) {
+                totalHargaJadi += hargaAkhir;
+                totalJumlahJadi += ((KueJadi) kue).getJumlah();
+            }
+
+            if (hargaAkhir > kueTermahal.hitungHarga()) {
+                kueTermahal = kue;
+            }
+        }
+
+        System.out.println("\nTOTAL SEMUA HARGA KUE: Rp" + totalSemuaHarga);
+
+        System.out.println("TOTAL HARGA KUE PESANAN: Rp" + totalHargaPesanan);
+        System.out.println("TOTAL BERAT KUE PESANAN: " + totalBeratPesanan + " kg");
+
+        System.out.println("TOTAL HARGA KUE JADI: Rp" + totalHargaJadi);
+        System.out.println("TOTAL JUMLAH KUE JADI: " + totalJumlahJadi);
+
+        System.out.println("\nKUE DENGAN HARGA TERBESAR:");
+        String jenisTermahal = (kueTermahal instanceof KuePesanan) ? "[Kue Pesanan]" : "[Kue Jadi]";
+        System.out.println(jenisTermahal + " ~ " + kueTermahal.toString());
+    }
+}
